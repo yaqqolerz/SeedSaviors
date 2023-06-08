@@ -16,14 +16,14 @@ public class PlayerAttackController : MonoBehaviour
     public LayerMask WhatIsEnemy;
     public float TotalAttackDamage;
     public float NormalDamage;
-    /*public float CurrentPlayerHeath = 100f;*/
+    public float CurrentPlayerHeath = 100f;
     public ParticleSystem burstParticles;
-    /*public HealthManager health;*/
+    public HealthManager health;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        /*health.SetMaxHealth(CurrentPlayerHeath);*/
+        health.SetMaxHealth(CurrentPlayerHeath);
     }
 
     // Update is called once per frame
@@ -104,7 +104,7 @@ public class PlayerAttackController : MonoBehaviour
     //      TotalAttackDamage=NormalDamage;
     // }
 
-    /*public virtual void DamagePlayer(float amount)
+    public virtual void DamagePlayer(float amount)
     {
         CurrentPlayerHeath -= amount;
         anim.SetTrigger("Hit");
@@ -114,5 +114,5 @@ public class PlayerAttackController : MonoBehaviour
             Destroy(gameObject);
             Instantiate(burstParticles, transform.position, transform.rotation);
         }
-    }*/
+    }
 }

@@ -6,18 +6,18 @@ public class EnemyController : MonoBehaviour
 {
     public Transform PlayerPosition;
     public float CurrentEnemyHeath = 100f;
-    /*public Animator EnemyAnim;*/
+    //public Animator EnemyAnim;
     public GameObject FireballGO;
     public float minimumFiringDistance;
     public float CalculatedTime;
     public float TimeBtwEachShoot;
     public EnemyController enemy;
-    /*public ParticleSystem burstParticles;*/
+    public ParticleSystem burstParticles;
     // Start is called before the first frame update
     void Start()
     {
         PlayerPosition = GameObject.FindGameObjectWithTag("Player").transform;
-        /*EnemyAnim = GetComponent<Animator>();*/
+        //EnemyAnim = GetComponent<Animator>();
         CalculatedTime = TimeBtwEachShoot;
         enemy = GetComponent<EnemyController>();
     }
@@ -41,14 +41,14 @@ public class EnemyController : MonoBehaviour
         if (Vector2.Distance(transform.position, PlayerPosition.position) <= minimumFiringDistance)
             if (CalculatedTime <= 0)
             {
-                /*EnemyAnim.SetBool("EnemyAttack", true);*/
+                // EnemyAnim.SetBool("EnemyAttack", true);
                 Instantiate(FireballGO, transform.position, Quaternion.LookRotation(Vector3.forward, transform.position - PlayerPosition.position));
                 CalculatedTime = TimeBtwEachShoot;
             }
             else
             {
                 CalculatedTime -= Time.deltaTime;
-               /* EnemyAnim.SetBool("EnemyAttack", false);*/
+                // EnemyAnim.SetBool("EnemyAttack", false);
             }
     }
     void FlipEnemy()
@@ -65,11 +65,11 @@ public class EnemyController : MonoBehaviour
     public virtual void DamageEnemy(float damageAmount)
     {
         CurrentEnemyHeath -= damageAmount;
-        /*EnemyAnim.SetTrigger("Hit");*/
+        // EnemyAnim.SetTrigger("Hit");
         if (CurrentEnemyHeath <= 0.0f)
         {
             Destroy(gameObject);
-            /*Instantiate(burstParticles, transform.position, transform.rotation);*/
+            Instantiate(burstParticles, transform.position, transform.rotation);
         }
     }
 }

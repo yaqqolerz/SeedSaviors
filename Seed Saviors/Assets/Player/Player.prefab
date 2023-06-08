@@ -187,8 +187,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0026056767, y: 0.00038409233}
-  m_Size: {x: 0.38854986, y: 0.5359249}
+  m_Offset: {x: 0.0026056767, y: 0.011541009}
+  m_Size: {x: 0.38854986, y: 0.5136111}
   m_Direction: 0
 --- !u!114 &4459698193309243601
 MonoBehaviour:
@@ -260,4 +260,6 @@ MonoBehaviour:
     m_Bits: 256
   TotalAttackDamage: 10
   NormalDamage: 10
+  CurrentPlayerHeath: 100
   burstParticles: {fileID: 4886286015587616959, guid: 6a8520dcf9693dd409c3b3228e80f3f0, type: 3}
+  health: {fileID: 0}
