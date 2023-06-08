@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4459698193309243601, guid: 41d53a81c72f5f14b880caffc86124aa, type: 3}
+      propertyPath: CanPlayerJump
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4459698193309243605, guid: 41d53a81c72f5f14b880caffc86124aa, type: 3}
       propertyPath: m_Color.b
       value: 0
