@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Menu DLl/Main Menu.unity
+    path: Assets/Menu Dik/Main Menu Cop.unity
     guid: 8cd226380cd89b944931ac17692796a4
   - enabled: 1
-    path: Assets/Menu DLl/Team.unity
+    path: Assets/Menu Dik/Team.unity
     guid: a3abce077d12a7045ad01a8155dbb2fc
   - enabled: 1
     path: Assets/Scenes/Demo Level.unity
