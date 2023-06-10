@@ -5,6 +5,7 @@ public class ElevatorLoadScene : MonoBehaviour
 {
     [SerializeField] private float speedScale = 1f;
     [SerializeField] private Color fadeColor = Color.black;
+    [SerializeField] private string sceneName;
 
     private AnimationCurve Curve = new AnimationCurve(new Keyframe(0, 1), 
         new Keyframe(0.5f, 0.5f, -1.5f, -1.5f), new Keyframe(1,0));
@@ -65,9 +66,9 @@ public class ElevatorLoadScene : MonoBehaviour
             texture.Apply();
             if (alpha <= 0f || alpha >= 1f) {
                 direction = 0;
-                Debug.Log("Quitted");
-                Application.Quit();
-                Debug.Log("Quitted2");
+                
+                SceneManager.LoadScene(sceneName);
+                
             } 
         }
     }

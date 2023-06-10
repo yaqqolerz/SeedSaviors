@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Enemy
   - ElectricBox
   - Elevator
   layers:
@@ -45,15 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 2075858295
+  - name: Ground
+    uniqueID: 3334610471
     locked: 0
   - name: Character
-    uniqueID: 1137850371
+    uniqueID: 2083413107
     locked: 0
-  - name: Ground
-    uniqueID: 1926560523
+  - name: Objects
+    uniqueID: 3664275869
     locked: 0
   - name: NearCamObjects
-    uniqueID: 530649091
+    uniqueID: 456421909
     locked: 0

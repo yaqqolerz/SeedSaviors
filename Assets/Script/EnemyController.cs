@@ -55,11 +55,11 @@ public class EnemyController : MonoBehaviour
     {
         if (PlayerPosition.position.x > transform.position.x)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
         }
         else if (PlayerPosition.position.x < transform.position.x)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
         }
     }
     public virtual void DamageEnemy(float damageAmount)

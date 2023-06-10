@@ -38,7 +38,7 @@ public class InteractableObject : MonoBehaviour
         if (isPlayerInsideTrigger)
         {
             // Check if space key is pressed
-            isSpaceKeyPressed = Input.GetKey(KeyCode.Space);
+            isSpaceKeyPressed = Input.GetKey(KeyCode.E);
         }
     }
 
