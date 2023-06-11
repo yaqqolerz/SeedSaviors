@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - ElectricBox
   - Elevator
+  - Laser
+  - Trash
   layers:
   - Default
   - TransparentFX
