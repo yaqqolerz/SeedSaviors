@@ -9,6 +9,9 @@ TagManager:
   - Elevator
   - Laser
   - Trash
+  - Enemy
+  - Floor
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -20,9 +23,9 @@ TagManager:
   - Ground
   - Enemy
   - 
-  - 
-  - 
-  - 
+  - Bat
+  - AttackColliser
+  - Dialog
   - 
   - 
   - 
@@ -57,4 +60,13 @@ TagManager:
     locked: 0
   - name: NearCamObjects
     uniqueID: 456421909
+    locked: 0
+  - name: Background
+    uniqueID: 360717185
+    locked: 0
+  - name: Center
+    uniqueID: 2145762679
+    locked: 0
+  - name: Front
+    uniqueID: 2031912177
     locked: 0
