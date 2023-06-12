@@ -5011,7 +5011,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Options
+  m_Text: Options Demo Test
 --- !u!222 &351425810
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5355,7 +5355,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1296909112}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: NewGame
+        m_MethodName: Intro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6256,7 +6256,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1296909112}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: NewGame
+        m_MethodName: Team
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

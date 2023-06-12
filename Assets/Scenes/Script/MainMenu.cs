@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   public void NewGame()
+    public void NewGame()
     {
         SceneManager.LoadScene("Level1");
     }
-
+        public void Intro()
+    {
+        SceneManager.LoadScene("Level1A");
+    }
+    public void Team()
+    {
+        SceneManager.LoadScene("Team");
+    }
     public void Exit()
     {
         Application.Quit();
