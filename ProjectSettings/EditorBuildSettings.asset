@@ -9,12 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Intro.unity
     guid: 54dde45391f1c9a44b8f9df625efa9fa
   - enabled: 1
-    path: Assets/AxcouldDiks/Test/Menu.unity
+    path: Assets/Scenes/Menu.unity
     guid: c603da3a62f114747b87e87809cca8fc
   - enabled: 1
-    path: Assets/Holes/Team.unity
+    path: Assets/Scenes/Team.unity
     guid: a3abce077d12a7045ad01a8155dbb2fc
   - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 0c6b3c558cf35cd489f1502b13a39f76
+  - enabled: 0
     path: Assets/AxcouldDiks/Test/Level1A.unity
     guid: 31707cbb2d1eff44983a80a07f1ecedd
   - enabled: 1

@@ -710,8 +710,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1555667901
-  m_SortingLayer: 3
+  m_SortingLayerID: 2031912177
+  m_SortingLayer: 7
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: a469fce2fe8e5ce4fbd2813c7f289ba9, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -809,7 +809,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1951,7 +1951,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 6
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: ea70054b45139284bb411e3ce62966f2, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2438,7 +2438,7 @@ GameObject:
   - component: {fileID: 4490369905952233904}
   - component: {fileID: 4490369905952233905}
   - component: {fileID: 4490369905952233918}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Attack Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,9 +9,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Level1");
     }
-        public void Intro()
+    public void Options()
     {
-        SceneManager.LoadScene("Level1A");
+        SceneManager.LoadScene("Options");
     }
     public void Team()
     {
@@ -21,7 +21,10 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-
+    public void Replay()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void GoBackToMenu()
     {
         SceneManager.LoadScene("Menu");
