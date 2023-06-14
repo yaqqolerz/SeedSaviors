@@ -12,6 +12,7 @@ public class PlayerControler : MonoBehaviour
     public AudioClip attack2Sound;
     public AudioClip damageSound;
     public AudioClip dashSound;
+    [SerializeField] private int jumpforce;
 
     public Transform floorCollider;
     public Transform sprite;
@@ -25,6 +26,14 @@ public class PlayerControler : MonoBehaviour
 
     public string currentLevel;
 
+    public Transform FootPosition;
+
+    public float groundRadius;
+    public LayerMask WhatIsGround;
+    public bool IsGrounded;
+    public bool CanPlayerJump = true;
+    [SerializeField]public float movingSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +46,7 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckIfPlayerIsGrounded();
         if (!currentLevel.Equals(SceneManager.GetActiveScene().name))
         {
             currentLevel = SceneManager.GetActiveScene().name;
@@ -101,16 +111,16 @@ public class PlayerControler : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Jump") && floorCollider.GetComponent<FloorCollider>().canJump == true)
+        if (Input.GetButtonDown("Jump") && IsGrounded && CanPlayerJump /*&& floorCollider.GetComponent<FloorCollider>().canJump == true*/)
         {
             sprite.GetComponent<Animator>().Play("Playerjump", -1);
             rb.velocity = Vector2.zero;
-            floorCollider.GetComponent<FloorCollider>().canJump = false;
-            rb.AddForce(new Vector2(0, 1000));
+            /*floorCollider.GetComponent<FloorCollider>().canJump = false;*/
+            rb.AddForce(new Vector2(0, jumpforce));
 
         }
 
-        vel = new Vector2(Input.GetAxisRaw("Horizontal") * 6f, rb.velocity.y);
+        vel = new Vector2(Input.GetAxisRaw("Horizontal") * movingSpeed, rb.velocity.y);
 
 
 
@@ -143,6 +153,16 @@ public class PlayerControler : MonoBehaviour
     void RestoreGravityScale()
     {
         rb.gravityScale = 6;
+    }
+
+    void CheckIfPlayerIsGrounded()
+    {
+        IsGrounded = Physics2D.OverlapCircle(FootPosition.position, groundRadius, WhatIsGround);
+    }
+
+    public Vector2 GetMovementInput()
+    {
+        return rb.velocity;
     }
 }
 

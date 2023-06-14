@@ -23,7 +23,7 @@ public class KeeperAttackCollider : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Character>().PlayerDamage(1);
+            collision.transform.SendMessage("DamagePlayer", 30);
         }
     }
 }

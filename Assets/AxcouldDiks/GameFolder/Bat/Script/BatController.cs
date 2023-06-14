@@ -29,7 +29,7 @@ public class BatController : MonoBehaviour
             if(attackTime >= 0.6f)
             {
                 attackTime = 0;
-                player.GetComponent<Character>().PlayerDamage(1);
+                player.SendMessage("DamagePlayer", 5);
             }
         }
 

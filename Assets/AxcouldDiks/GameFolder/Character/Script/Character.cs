@@ -15,6 +15,8 @@ public class Character : MonoBehaviour
     public AudioClip bossBattleMusic;
     public AudioClip youWin;
 
+    public ParticleSystem burstParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class Character : MonoBehaviour
        if(life <= 0 && !transform.name.Equals("BossBrain"))
         {
             sprite.GetComponent<Animator>().Play("Die", -1);
+            Instantiate(burstParticles, transform.position, transform.rotation);
+            Destroy(this.gameObject);
         }
 
         if (transform.CompareTag("Player"))

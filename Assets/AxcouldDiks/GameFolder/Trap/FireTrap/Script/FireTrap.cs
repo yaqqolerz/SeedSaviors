@@ -21,7 +21,7 @@ public class FireTrap : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-                     collision.transform.GetComponent<Character>().PlayerDamage(1);
+            collision.transform.SendMessage("DamagePlayer", 50);
         }
     }
 

@@ -48,7 +48,7 @@ public class GhostController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Character>().PlayerDamage(1);
+            collision.transform.SendMessage("DamagePlayer", 10);
         }
     }
 }

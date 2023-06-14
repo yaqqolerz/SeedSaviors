@@ -13,6 +13,7 @@ public class PasswordController : MonoBehaviour
     [SerializeField] private GameObject buttonY;
     [SerializeField] private Sprite spriteWrong;
     [SerializeField] private Sprite spriteRight;
+    [SerializeField] private AudioSource audioSource;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class PasswordController : MonoBehaviour
         if (C == 3)
         {
             buttonC.GetComponent<SpriteRenderer>().sprite = spriteRight;
+            audioSource.Play();
         }
         else
         {
@@ -52,6 +54,7 @@ public class PasswordController : MonoBehaviour
         if (I == 9)
         {
             buttonI.GetComponent<SpriteRenderer>().sprite = spriteRight;
+            audioSource.Play();
         }
         else
         {
@@ -64,6 +67,7 @@ public class PasswordController : MonoBehaviour
         if (T == 20)
         {
             buttonT.GetComponent<SpriteRenderer>().sprite = spriteRight;
+            audioSource.Play();
         }
         else
         {
@@ -76,6 +80,7 @@ public class PasswordController : MonoBehaviour
         if (Y == 25)
         {
             buttonY.GetComponent<SpriteRenderer>().sprite = spriteRight;
+            audioSource.Play();
         }
         else
         {

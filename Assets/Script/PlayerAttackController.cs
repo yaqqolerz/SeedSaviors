@@ -38,7 +38,7 @@ public class PlayerAttackController : MonoBehaviour
         Collider2D[] EnemyHit = Physics2D.OverlapCircleAll(AttackPosition.position, AttackRadius, WhatIsEnemy);
         foreach (Collider2D collider in EnemyHit)
         {
-            collider.transform.SendMessage("DamageEnemy", TotalAttackDamage);
+            collider.GetComponent<Character>().life--;
         }
     }
     void OnDrawGizmos()

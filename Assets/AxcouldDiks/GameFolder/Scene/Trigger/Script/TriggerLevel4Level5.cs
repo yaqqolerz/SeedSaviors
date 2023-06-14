@@ -21,7 +21,7 @@ public class TriggerLevel4Level5 : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Level5");
+            SceneManager.LoadScene("Ending");
         }
 
     }

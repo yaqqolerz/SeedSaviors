@@ -9,6 +9,8 @@ public class InteractableObject : MonoBehaviour
     public bool isTouchingGround;
     [SerializeField] private float maxAngularVelocity;
 
+    [SerializeField] private AudioSource pushSound;
+    [SerializeField] private bool soundPlaying = false;
 
 
 
@@ -19,7 +21,7 @@ public class InteractableObject : MonoBehaviour
         {
                 isPlayerInsideTrigger = true;
                 plr.CanPlayerJump = false;
-                plr.movingSpeed = plr.movingSpeed / 2;
+                plr.movingSpeed = plr.movingSpeed / 2.5f;
         }
     }
 
@@ -29,7 +31,7 @@ public class InteractableObject : MonoBehaviour
         {
             isPlayerInsideTrigger = false;
             plr.CanPlayerJump = true;
-            plr.movingSpeed = plr.movingSpeed * 2;
+            plr.movingSpeed = plr.movingSpeed * 2.5f;
         }
     }
 
@@ -40,12 +42,34 @@ public class InteractableObject : MonoBehaviour
             // Check if space key is pressed
             isSpaceKeyPressed = Input.GetKey(KeyCode.E);
         }
-    }
+        if (Input.GetKeyUp(KeyCode.E)){
+            pushSound.Stop();
+        }
+    }   
+
 
     private void FixedUpdate()
     {
         if (isPlayerInsideTrigger && isSpaceKeyPressed && isTouchingGround)
         {
+            if(pushSound != null)
+            {
+                if (!soundPlaying)
+                {
+                    if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+                    {
+                        pushSound.Play();
+                        soundPlaying = true;
+                    }
+                }
+
+                if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.E))
+                {
+                    pushSound.Stop();
+                    soundPlaying = false;
+                }
+            }
+            
             Vector2 direction = plr.GetMovementInput(); // Get the movement input from the player script
 
             // Normalize the direction vector only if the player is giving input

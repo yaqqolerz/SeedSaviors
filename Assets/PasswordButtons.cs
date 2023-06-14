@@ -5,6 +5,7 @@ public class PasswordButtons : MonoBehaviour
     [SerializeField] private PasswordController passwordController;
     [SerializeField] private int selectedVariable;
     private int choosenVariable;
+    [SerializeField] private AudioSource sound;
     
 
     private void Start()
@@ -34,6 +35,7 @@ public class PasswordButtons : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                sound.Play();
                 if(choosenVariable == 1)
                 {
                     addC();
