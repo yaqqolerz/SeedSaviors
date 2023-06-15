@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 10f;
     public bool CanPlayerJump;
     public Transform FootPosition;
+    public GameObject JumpEffect;
+    AudioSource Jumpsound;
 
     public float groundRadius;
     public LayerMask WhatIsGround;
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         playerBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         CanPlayerJump = true;
+        Jumpsound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -89,6 +92,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
+        Jumpsound.Play();
+        Instantiate(JumpEffect, transform.position, transform.rotation);
         if (CanPlayerJump == true && IsGrounded == true)
         {
             playerBody.velocity = new Vector2(playerBody.velocity.x, jumpSpeed);

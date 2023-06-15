@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 4459698193309243601}
   - component: {fileID: 4459698193309243600}
   - component: {fileID: 4459698193309243599}
+  - component: {fileID: 7428804209962061727}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -139,8 +140,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1137850371
-  m_SortingLayer: 0
+  m_SortingLayerID: 2083413107
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 752096484, guid: 4f7504272d605a24db1b7a02714a4356, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -209,6 +210,7 @@ MonoBehaviour:
   jumpSpeed: 4
   CanPlayerJump: 0
   FootPosition: {fileID: 4459698192965213358}
+  JumpEffect: {fileID: 1599250627851632816, guid: 17a7d36793379654ebe031954543b0d9, type: 3}
   groundRadius: 0.2
   WhatIsGround:
     serializedVersion: 2
@@ -219,7 +221,7 @@ MonoBehaviour:
   pauseScreen: {fileID: 0}
 --- !u!95 &4459698193309243600
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -236,7 +238,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4459698193309243599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,4 +266,102 @@ MonoBehaviour:
   CurrentPlayerHeath: 100
   burstParticles: {fileID: 4886286015587616959, guid: 6a8520dcf9693dd409c3b3228e80f3f0, type: 3}
   health: {fileID: 0}
-  checkpointManager: {fileID: 0}
+  respawnPos1: {fileID: 0}
+  respawnPos2: {fileID: 0}
+  currentlevel: 0
+--- !u!82 &7428804209962061727
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459698193309243607}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3f9f4283631234f43879324c09eec4bd, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
