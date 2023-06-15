@@ -5,16 +5,16 @@ using UnityEngine;
 public class TrashControl : MonoBehaviour
 {
     [SerializeField] Trashbin Gearbin;
-    [SerializeField] Trashbin Branchbin;
+    //[SerializeField] Trashbin Branchbin;
     [SerializeField] GameObject gearBin;
-    [SerializeField] GameObject branchBin;
+    //[SerializeField] GameObject branchBin;
     [SerializeField] GameObject trashBin;
     [SerializeField] GameObject trashlefttrigger;
     [SerializeField] GameObject trashrighttrigger;
     [SerializeField] GameObject gearlefttrigger;
     [SerializeField] GameObject gearrighttrigger;
-    [SerializeField] GameObject branchlefttrigger;
-    [SerializeField] GameObject branchrighttrigger;
+    //[SerializeField] GameObject branchlefttrigger;
+    //[SerializeField] GameObject branchrighttrigger;
     [SerializeField] GameObject limitleft;
     [SerializeField] GameObject limitright;
     [SerializeField] Bird Gearbird;
@@ -27,12 +27,12 @@ public class TrashControl : MonoBehaviour
 
     private void Update()
     {
-        if(Gearbin.TrashCount >= 10 && Branchbin.TrashCount >= 10)
+        if(Gearbin.TrashCount >= 20 /*&& Branchbin.TrashCount >= 10*/)
         {
             gearBin.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             gearBin.GetComponent<BoxCollider2D>().isTrigger = true; 
-            branchBin.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-            branchBin.GetComponent<BoxCollider2D>().isTrigger = true;
+            //branchBin.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            //branchBin.GetComponent<BoxCollider2D>().isTrigger = true;
             trashBin.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             limitleft.GetComponent<PolygonCollider2D>().enabled = false;
             limitright.GetComponent<PolygonCollider2D>().enabled = false;
@@ -40,8 +40,8 @@ public class TrashControl : MonoBehaviour
             trashrighttrigger.SetActive(true);
             gearlefttrigger.SetActive(false);
             gearrighttrigger.SetActive(false);
-            branchlefttrigger.SetActive(false);
-            branchrighttrigger.SetActive(false);
+            //branchlefttrigger.SetActive(false);
+            //branchrighttrigger.SetActive(false);
             if(Branchbird != null)
             {
                 Branchbird.isnotFinished = false;
