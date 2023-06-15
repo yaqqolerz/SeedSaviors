@@ -92,11 +92,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        Jumpsound.Play();
-        Instantiate(JumpEffect, transform.position, transform.rotation);
+        
         if (CanPlayerJump == true && IsGrounded == true)
         {
+            Jumpsound.Play();
             playerBody.velocity = new Vector2(playerBody.velocity.x, jumpSpeed);
+            Instantiate(JumpEffect, transform.position, transform.rotation);
         }
     }
     void CheckInputDirection()
