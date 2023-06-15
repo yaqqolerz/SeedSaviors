@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public bool IsGrounded;
     public bool Running;
     public Animator anim;
+    public Transform pauseScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
         /*CheckIfCanJump();*/
         CheckIfWalking();
         AnimationUpdater();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseScreen.GetComponent<Pause>().enabled = !pauseScreen.GetComponent<Pause>().enabled;
+        }
     }
     void AnimationUpdater()
     {

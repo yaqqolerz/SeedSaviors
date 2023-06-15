@@ -6,37 +6,39 @@ using TMPro;
 public class Dialogue : MonoBehaviour
 {
     // Fields
-    //Window
+    // Window
     public GameObject window;
-    //Indicator
+    // Indicator
     public GameObject indicator;
     // Text Component
     public TMP_Text dialogueText;
-    //Dialog List 
+    // Dialog List
     public List<string> dialogue;
     // Writing Speed
     public float writingSpeed;
-    //Index On Dialog
+    // Index On Dialog
     private int index;
-    //Character Index
+    // Character Index
     private int charIndex;
     // Started Boolean
     private bool started;
     // Wait for next boolean
     private bool waitForNext;
+    // Flag to check if dialogue has ended
+    private bool dialogueEnded;
 
     private void Awake()
     {
-        ToogleIndicator(false);
-        ToogleWindow(false);
+        ToggleIndicator(false);
+        ToggleWindow(false);
     }
 
-    private void ToogleWindow(bool show)
+    private void ToggleWindow(bool show)
     {
         window.SetActive(show);
     }
 
-    public void ToogleIndicator(bool show)
+    public void ToggleIndicator(bool show)
     {
         indicator.SetActive(show);
     }
@@ -44,15 +46,17 @@ public class Dialogue : MonoBehaviour
     // Start Dialog
     public void StartDialogue()
     {
-        if (started)
+        if (started && !dialogueEnded)
             return;
 
-        // Boolean to Indicate
+        // Reset the dialogue state
         started = true;
+        dialogueEnded = false;
+
         // Show the Window
-        ToogleWindow(true);
+        ToggleWindow(true);
         // Hide Indicator
-        ToogleIndicator(false);
+        ToggleIndicator(false);
         // Start First Dialog
         GetDialogue(0);
     }
@@ -61,39 +65,42 @@ public class Dialogue : MonoBehaviour
     {
         // Start Index at Zero (0)
         index = i;
-        //Reset The Character Index
+        // Reset The Character Index
         charIndex = 0;
         // Clear The Dialogue Component Text
         dialogueText.text = string.Empty;
-        // Start Writing (Nulis)
+        // Start Writing
         StartCoroutine(Writing());
     }
 
     // End Dialog
     public void EndDialogue()
     {
-        // Stop All Ienumerators
+        // Stop All Coroutines
         StopAllCoroutines();
         // Hide The Window
-        ToogleWindow(false);
+        ToggleWindow(false);
+        // Set dialogueEnded to true
+        dialogueEnded = true;
     }
+
     // Logic
     IEnumerator Writing()
     {
         yield return new WaitForSeconds(writingSpeed);
-
 
         string currentDialogue = dialogue[index];
         // Write The Character (Player)
         dialogueText.text += currentDialogue[charIndex];
         // Increase The Character Index
         charIndex++;
+
         // Make Sure Have Reached The End Of Sentence
         if (charIndex < currentDialogue.Length)
         {
-            //Wait X Seconds
+            // Wait X Seconds
             yield return new WaitForSeconds(writingSpeed);
-            // Restart The Same Proses
+            // Restart The Same Process
             StartCoroutine(Writing());
         }
         else
@@ -105,7 +112,7 @@ public class Dialogue : MonoBehaviour
 
     private void Update()
     {
-        if (!started)
+        if (!started || dialogueEnded)
             return;
 
         if (waitForNext && Input.GetKeyDown(KeyCode.E))
@@ -113,18 +120,28 @@ public class Dialogue : MonoBehaviour
             waitForNext = false;
             index++;
 
-            //check if are in the scape fo dialogue list
+            // Check if we are within the scope of the dialogue list
             if (index < dialogue.Count)
             {
-                // if so fetch the next dialogue 
+                // If so, fetch the next dialogue
                 GetDialogue(index);
             }
             else
             {
-                // If not end the dialogue process
-                ToogleIndicator(true);
+                // If not, end the dialogue process
+                ToggleIndicator(true);
                 EndDialogue();
             }
+        }
+    }
+
+    // Reset the dialogue state when the player exits the trigger area
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            started = false;
+            dialogueEnded = false;
         }
     }
 }

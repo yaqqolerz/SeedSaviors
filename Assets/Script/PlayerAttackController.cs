@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerAttackController : MonoBehaviour
 {
@@ -8,9 +8,6 @@ public class PlayerAttackController : MonoBehaviour
     public bool AllowedToAttack;
     public bool PlayerIsAttacking;
     public Animator anim;
-    // public bool CanDoCombo;
-    // public float InputTimer = 0.5f; //Combo sistem
-    // public float lastInputTime;
     public float AttackRadius;
     public Transform AttackPosition;
     public LayerMask WhatIsEnemy;
@@ -19,6 +16,13 @@ public class PlayerAttackController : MonoBehaviour
     public float CurrentPlayerHeath = 100f;
     public ParticleSystem burstParticles;
     public HealthManager health;
+    //public CheckpointManager checkpointManager;
+    [SerializeField] private Transform respawnPos1;
+    [SerializeField] private Transform respawnPos2;
+
+
+    //Checkpoint
+    public int currentlevel = 0;
 
     void Start()
     {
@@ -31,8 +35,8 @@ public class PlayerAttackController : MonoBehaviour
     {
         CheckifAttackKeyPressed();
         DoAttacks();
-        // CheckCombo(); //Combo Sistem
     }
+
     void CheckIfEnemyDetected()
     {
         Collider2D[] EnemyHit = Physics2D.OverlapCircleAll(AttackPosition.position, AttackRadius, WhatIsEnemy);
@@ -41,21 +45,12 @@ public class PlayerAttackController : MonoBehaviour
             collider.GetComponent<Character>().life--;
         }
     }
+
     void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(AttackPosition.position, AttackRadius);
     }
-    // void CheckCombo()
-    // {
-    //     if (Time.time - lastInputTime <= InputTimer)
-    //     {
-    //         CanDoCombo = true;
-    //     }
-    //     else  Combo Sistem
-    //     {
-    //         CanDoCombo = false;
-    //     }
-    // }
+
     void CheckifAttackKeyPressed()
     {
         if (Input.GetMouseButtonDown(0))
@@ -63,7 +58,6 @@ public class PlayerAttackController : MonoBehaviour
             if (AllowedToAttack == true)
             {
                 AttackInputRecieved = true;
-                // lastInputTime = Time.time; //Combo sistem
             }
         }
     }
@@ -74,35 +68,19 @@ public class PlayerAttackController : MonoBehaviour
         {
             if (PlayerIsAttacking == false)
             {
-                anim.SetBool("Attack1", true); // No Combo
+                anim.SetBool("Attack1", true);
                 TotalAttackDamage = NormalDamage;
-                // if (CanDoCombo == false)
-                // {
-                //     anim.SetBool("Attack1", true);
-                //TotalAttackDamage=NormalDamage;
-                // }                                    //Combo Sistem
-                // else if (CanDoCombo == true)
-                // {
-                //     anim.SetBool("Attack2", true);
-                //TotalAttackDamage=NormalDamage * 1.5f;
-                // }
                 PlayerIsAttacking = true;
                 AttackInputRecieved = false;
             }
         }
     }
+
     void firstAttackDone()
     {
         PlayerIsAttacking = false;
         anim.SetBool("Attack1", false);
     }
-    // void SecondAttackDone()
-    // {
-    //     PlayerIsAttacking = false;
-    //     anim.SetBool("Attack2", false); sistem combo
-    //     CanDoCombo = false;
-    //      TotalAttackDamage=NormalDamage;
-    // }
 
     public virtual void DamagePlayer(float amount)
     {
@@ -111,8 +89,47 @@ public class PlayerAttackController : MonoBehaviour
         health.SetHealth(CurrentPlayerHeath);
         if (CurrentPlayerHeath <= 0.0f)
         {
-            Destroy(gameObject);
-            Instantiate(burstParticles, transform.position, transform.rotation);
+            // Player is dead, respawn at the last activated checkpoint
+
+            RespawnAtLastCheckpoint();
         }
+    }
+
+    void RespawnAtLastCheckpoint()
+    {
+        if(SceneManager.GetActiveScene().name.Equals("Level4"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            this.GetComponent<PlayerMovement>().enabled = false;
+            StartCoroutine(RespawnWithDelay());
+        }
+    }
+
+    IEnumerator RespawnWithDelay()
+    {
+        Instantiate(burstParticles, transform.position, transform.rotation);
+
+        yield return new WaitForSeconds(3f); // Wait for 3 seconds
+
+        
+        switch (currentlevel)
+        {
+            case 1:
+                Vector3 respawnPosition = respawnPos1.position;
+                transform.position = respawnPosition;
+                break;
+            case 2:
+                Vector3 respawnPosition2 = respawnPos2.position;
+                transform.position = respawnPosition2;
+                break;
+        }
+        CurrentPlayerHeath = 100f; // Reset player health
+        health.SetMaxHealth(CurrentPlayerHeath);
+        this.GetComponent<SpriteRenderer>().enabled = true;
+        this.GetComponent<PlayerMovement>().enabled = true;
     }
 }

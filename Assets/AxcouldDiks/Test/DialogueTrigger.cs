@@ -15,7 +15,7 @@ public class DialogueTrigger : MonoBehaviour
         if (collision.tag == "Player")
         {
             playerDetected = true;
-            dialogueScript.ToogleIndicator(playerDetected);
+            dialogueScript.ToggleIndicator(playerDetected);
 
         }
     }
@@ -25,7 +25,7 @@ public class DialogueTrigger : MonoBehaviour
         if (collision.tag == "Player")
         {
             playerDetected = false;
-            dialogueScript.ToogleIndicator(playerDetected);
+            dialogueScript.ToggleIndicator(playerDetected);
             dialogueScript.EndDialogue();
         }
     }
