@@ -19,10 +19,16 @@ public class PlayerAttackController : MonoBehaviour
     //public CheckpointManager checkpointManager;
     [SerializeField] private Transform respawnPos1;
     [SerializeField] private Transform respawnPos2;
+    private bool isRespawning = false;
+    [SerializeField] private AudioSource hittingsound;
 
 
     //Checkpoint
     public int currentlevel = 0;
+
+    //Attack Cooldown
+    [SerializeField] private float AttackCooldownTime = 1f; // The time between attacks
+    [SerializeField] private bool isAttackOnCooldown = false;
 
     void Start()
     {
@@ -42,7 +48,8 @@ public class PlayerAttackController : MonoBehaviour
         Collider2D[] EnemyHit = Physics2D.OverlapCircleAll(AttackPosition.position, AttackRadius, WhatIsEnemy);
         foreach (Collider2D collider in EnemyHit)
         {
-            collider.GetComponent<Character>().life--;
+            collider.GetComponent<Character>().PlayerDamage(((int)NormalDamage));
+            hittingsound.Play();
         }
     }
 
@@ -64,16 +71,22 @@ public class PlayerAttackController : MonoBehaviour
 
     void DoAttacks()
     {
-        if (AttackInputRecieved == true)
+        if (AttackInputRecieved && !PlayerIsAttacking && !isAttackOnCooldown)
         {
-            if (PlayerIsAttacking == false)
-            {
-                anim.SetBool("Attack1", true);
-                TotalAttackDamage = NormalDamage;
-                PlayerIsAttacking = true;
-                AttackInputRecieved = false;
-            }
+            anim.SetBool("Attack1", true);
+            TotalAttackDamage = NormalDamage;
+            PlayerIsAttacking = true;
+            AttackInputRecieved = false;
+
+            StartCoroutine(StartAttackCooldown());
         }
+    }
+
+    IEnumerator StartAttackCooldown()
+    {
+        isAttackOnCooldown = true; // Set the attack on cooldown
+        yield return new WaitForSeconds(AttackCooldownTime); // Wait for the cooldown duration
+        isAttackOnCooldown = false; // Reset the attack cooldown
     }
 
     void firstAttackDone()
@@ -97,6 +110,7 @@ public class PlayerAttackController : MonoBehaviour
 
     void RespawnAtLastCheckpoint()
     {
+        isRespawning = true;
         if(SceneManager.GetActiveScene().name.Equals("Level4"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -115,21 +129,28 @@ public class PlayerAttackController : MonoBehaviour
 
         yield return new WaitForSeconds(3f); // Wait for 3 seconds
 
-        
         switch (currentlevel)
         {
             case 1:
-                Vector3 respawnPosition = respawnPos1.position;
-                transform.position = respawnPosition;
+                if (isRespawning)
+                {
+                    Vector3 respawnPosition = respawnPos1.position;
+                    transform.position = respawnPosition;
+                }
+                
                 break;
             case 2:
-                Vector3 respawnPosition2 = respawnPos2.position;
-                transform.position = respawnPosition2;
+                if (isRespawning)
+                {
+                    Vector3 respawnPosition2 = respawnPos2.position;
+                    transform.position = respawnPosition2;
+                }
                 break;
         }
         CurrentPlayerHeath = 100f; // Reset player health
         health.SetMaxHealth(CurrentPlayerHeath);
         this.GetComponent<SpriteRenderer>().enabled = true;
         this.GetComponent<PlayerMovement>().enabled = true;
+        isRespawning = false;
     }
 }

@@ -15,6 +15,8 @@ public class TrashControl : MonoBehaviour
     [SerializeField] GameObject gearrighttrigger;
     [SerializeField] GameObject branchlefttrigger;
     [SerializeField] GameObject branchrighttrigger;
+    [SerializeField] GameObject limitleft;
+    [SerializeField] GameObject limitright;
     [SerializeField] Bird Gearbird;
     [SerializeField] GameObject Gearbirddest;
     [SerializeField] Bird Branchbird;
@@ -32,6 +34,8 @@ public class TrashControl : MonoBehaviour
             branchBin.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             branchBin.GetComponent<BoxCollider2D>().isTrigger = true;
             trashBin.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            limitleft.GetComponent<PolygonCollider2D>().enabled = false;
+            limitright.GetComponent<PolygonCollider2D>().enabled = false;
             trashlefttrigger.SetActive(true);
             trashrighttrigger.SetActive(true);
             gearlefttrigger.SetActive(false);

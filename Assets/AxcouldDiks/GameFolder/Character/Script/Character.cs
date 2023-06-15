@@ -17,16 +17,22 @@ public class Character : MonoBehaviour
 
     public ParticleSystem burstParticles;
 
+    [SerializeField] private AudioSource dmg;
+    [SerializeField] private AudioClip hitsound;
+
+    private bool isAttacked = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       if(life <= 0 && !transform.name.Equals("BossBrain"))
+        attackedcheck();
+        if (life <= 0 && !transform.name.Equals("BossBrain"))
         {
             sprite.GetComponent<Animator>().Play("Die", -1);
             Instantiate(burstParticles, transform.position, transform.rotation);
@@ -45,13 +51,13 @@ public class Character : MonoBehaviour
                 cam.parent = null;
                 SceneManager.MoveGameObjectToScene(cam.gameObject, SceneManager.GetActiveScene());
 
-                if(GameObject.Find("BossBrain").GetComponent<Character>().life > 0)
+                if (GameObject.Find("BossBrain").GetComponent<Character>().life > 0)
                 {
-                    if(cam.GetComponent<AudioSource>().clip != bossBattleMusic)
+                    if (cam.GetComponent<AudioSource>().clip != bossBattleMusic)
                     {
                         cam.GetComponent<AudioSource>().clip = bossBattleMusic;
                         cam.GetComponent<AudioSource>().Play();
-                    }                  
+                    }
                 }
                 else
                 {
@@ -69,14 +75,14 @@ public class Character : MonoBehaviour
                         cam.GetComponent<AudioSource>().PlayOneShot(youWin);
                     }
                 }
-                
+
             }
         }
 
         if (transform.name.Equals("BossBrain"))
         {
-            transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(1.78f, (life * 1.09f / 30f) );
-            if(life <= 0)
+            transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(1.78f, (life * 1.09f / 30f));
+            if (life <= 0)
             {
                 GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             }
@@ -86,9 +92,25 @@ public class Character : MonoBehaviour
 
     public void PlayerDamage(int value)
     {
+        isAttacked = true;
         life = life - value;
-        sprite.GetComponent<Animator>().Play("PlayerDamage", 1);
-        cam.GetComponent<Animator>().Play("Camera", -1);
-        GetComponent<PlayerControler>().audioSource.PlayOneShot(GetComponent<PlayerControler>().damageSound, 0.3f);
+
+        /*if(dmg != null)
+        {
+            dmg.Play();
+        }*/
+        //sprite.GetComponent<Animator>().Play("PlayerDamage", 1);
+        //cam.GetComponent<Animator>().Play("Camera", -1);
+        //GetComponent<PlayerControler>().audioSource.PlayOneShot(GetComponent<PlayerControler>().damageSound, 0.3f);
+    }
+
+    private void attackedcheck()
+    {
+        if (isAttacked)
+        {
+            dmg.Play();
+            Debug.Log("Sound PLayed");
+            isAttacked = false;
+        }
     }
 }

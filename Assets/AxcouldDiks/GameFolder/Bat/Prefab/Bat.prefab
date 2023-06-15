@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &3309935407031454125
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -104,8 +104,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3309935407508225950
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,12 +206,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955f94ca0bfe91b449207f095e65c2a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 1
+  life: 2
   sprite: {fileID: 3309935407031454124}
   cam: {fileID: 0}
   heartCountText: {fileID: 0}
   bossBattleMusic: {fileID: 0}
   youWin: {fileID: 0}
+  burstParticles: {fileID: 0}
+  dmg: {fileID: 2494532313984538327}
+  hitsound: {fileID: 8300000, guid: e636d434385f61a4c81b3398aec25d72, type: 3}
 --- !u!82 &2494532313984538327
 AudioSource:
   m_ObjectHideFlags: 0
@@ -223,11 +225,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 27356f9a3d4d80542860ca5159bcc97b, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: e636d434385f61a4c81b3398aec25d72, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -18437,6 +18437,22 @@ PrefabInstance:
       propertyPath: currlevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7782195828318272146, guid: 2e4e5e69939fbaa46a4928f1a5e85d25, type: 3}
+      propertyPath: m_Size.x
+      value: 0.38496017
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782195828318272146, guid: 2e4e5e69939fbaa46a4928f1a5e85d25, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.3075199
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782195828318272147, guid: 2e4e5e69939fbaa46a4928f1a5e85d25, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782195828318272147, guid: 2e4e5e69939fbaa46a4928f1a5e85d25, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 7782195829224965363, guid: 2e4e5e69939fbaa46a4928f1a5e85d25, type: 3}
       propertyPath: plr
       value: 
